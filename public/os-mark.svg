@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="OpenSky Corp mark">
+  <defs>
+    <linearGradient id="os-gold" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F2DE9A"/>
+      <stop offset="38%" stop-color="#C9A227"/>
+      <stop offset="100%" stop-color="#7A6118"/>
+    </linearGradient>
+    <linearGradient id="os-orbit" x1="14" y1="52" x2="52" y2="10" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#A8841E"/>
+      <stop offset="55%" stop-color="#E8C547"/>
+      <stop offset="100%" stop-color="#C9A227"/>
+    </linearGradient>
+    <radialGradient id="os-node" cx="51.1" cy="12.9" r="7" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#9AF5E8"/>
+      <stop offset="45%" stop-color="#2BB3A3"/>
+      <stop offset="100%" stop-color="#15796D"/>
+    </radialGradient>
+    <clipPath id="os-globe-clip">
+      <circle cx="32" cy="32" r="27"/>
+    </clipPath>
+  </defs>
+  <circle cx="32" cy="32" r="30.8" fill="none" stroke="#C9A227" stroke-opacity="0.14" stroke-width="0.85"/>
+  <circle cx="32" cy="32" r="27" fill="none" stroke="url(#os-gold)" stroke-width="4.6" stroke-linecap="round" stroke-dasharray="158 12" transform="rotate(-108 32 32)"/>
+  <ellipse cx="32" cy="32" rx="27" ry="9.5" fill="none" stroke="#C9A227" stroke-opacity="0.22" stroke-width="0.9" clip-path="url(#os-globe-clip)"/>
+  <path d="M32 5 A27 27 0 0 1 32 59 A27 27 0 0 1 32 5" fill="#0F1B2D" fill-opacity="0.07" clip-path="url(#os-globe-clip)"/>
+  <path d="M51.1 12.9C42 5.5 25.5 9.5 24 20C22.5 30.5 41.5 29 40.5 41C39.6 51.5 24 56 12.9 51.1" fill="none" stroke="url(#os-orbit)" stroke-width="5.25" stroke-linecap="round"/>
+  <circle cx="51.1" cy="12.9" r="7.4" fill="none" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="0.9"/>
+  <circle cx="51.1" cy="12.9" r="5.85" fill="url(#os-node)"/>
+  <circle cx="51.1" cy="12.9" r="2.15" fill="#FFFFFF" fill-opacity="0.96"/>
+  <path d="M51.1 8.1v2.35M51.1 15.4v2.35M46.7 12.9h2.35M53.2 12.9h2.35" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="0.75" stroke-linecap="round"/>
+</svg>
