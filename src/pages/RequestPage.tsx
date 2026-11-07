@@ -14,9 +14,9 @@ export function RequestPage() {
   return (
     <div className="pt-24 pb-20">
       <div className="mx-auto max-w-xl px-6 lg:px-10">
-        <Reveal>
-          <h1 className="font-display text-[36px] font-semibold">{t.request.title}</h1>
-          <p className="mt-4 text-base text-white/85">{t.request.lead}</p>
+        <Reveal variant="up">
+          <h1 className="type-h1-page">{t.request.title}</h1>
+          <p className="type-body mt-4 text-white/85">{t.request.lead}</p>
         </Reveal>
         <Reveal delayMs={80}>
           <form onSubmit={onSubmit} className="mt-10 space-y-4">

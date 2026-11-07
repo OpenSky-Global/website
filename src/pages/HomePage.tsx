@@ -1,117 +1,131 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Globe2, Radar, ShieldCheck, Satellite } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  HeroMissionBackdrop,
+  HeroMissionHoverRegion,
+  HeroMissionProvider,
+  HeroSlideDots,
+} from "../components/HeroMissionCarousel";
+import { HeroRotatingCopy } from "../components/HeroRotatingCopy";
+import { MissionPipeline } from "../components/MissionPipeline";
+import { ParallaxImage } from "../components/ParallaxImage";
 import { Reveal } from "../components/Reveal";
+import { SOLUTION_CARD_IMAGES } from "../data/solutionVisuals";
 import { useI18n } from "../i18n/context";
+
+const WHY_ICONS = [Satellite, Radar, ShieldCheck, ShieldCheck, Globe2, Globe2] as const;
 
 export function HomePage() {
   const { t } = useI18n();
 
   return (
     <>
-      <section className="relative min-h-[92vh] border-b border-border pt-24">
-        <div className="absolute inset-0 -z-10">
-          <img
-            src="/images/hero-drone-mining-site.jpg"
-            alt=""
-            className="h-full w-full object-cover opacity-35"
+      <HeroMissionProvider>
+        <HeroMissionHoverRegion className="relative isolate min-h-[min(100vh,920px)] overflow-hidden border-b border-border">
+          <HeroMissionBackdrop />
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-navy/92 via-navy/72 to-navy/20"
+            aria-hidden
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/95 to-navy/70" />
-        </div>
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-2 lg:items-center lg:px-10 lg:py-24">
-          <Reveal>
-            <p className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-signal">
-              {t.hero.kicker}
-            </p>
-            <h1 className="mt-4 font-display text-[40px] font-semibold leading-[1.05] md:text-[52px]">
-              {t.hero.title}{" "}
-              <span className="text-signal">{t.hero.titleAccent}</span>
-            </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/85">{t.hero.lead}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                to="/request"
-                className="group inline-flex items-center gap-2 rounded-full bg-signal px-6 py-3 font-display text-sm font-semibold text-navy hover:bg-signal-dim"
-              >
-                {t.hero.ctaDemo}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <a
-                href="/opensky-company-brochure.pdf"
-                className="inline-flex items-center rounded-full border border-white/20 px-6 py-3 font-display text-sm font-semibold text-white hover:border-white/40"
-              >
-                {t.hero.ctaBrochure}
-              </a>
-            </div>
-            <div className="mt-10 grid max-w-xl grid-cols-3 gap-3">
-              {[
-                [t.hero.stat1v, t.hero.stat1l],
-                [t.hero.stat2v, t.hero.stat2l],
-                [t.hero.stat3v, t.hero.stat3l],
-              ].map(([v, l]) => (
-                <div
-                  key={v}
-                  className="rounded-lg border border-white/[0.08] bg-white/[0.04] p-4"
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-navy/85 via-transparent to-navy/45"
+            aria-hidden
+          />
+          <div className="relative z-10 mx-auto flex max-w-7xl flex-col justify-end px-6 pb-16 pt-36 md:min-h-[min(100vh,920px)] md:justify-center md:pb-24 md:pt-28 lg:px-10">
+            <div className="max-w-2xl">
+              <HeroRotatingCopy slides={t.hero.slides} />
+              <HeroSlideDots labels={t.hero.slides.map((s) => s.kicker)} />
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  to="/request"
+                  className="cta-glow group inline-flex items-center gap-2 rounded-full bg-signal px-6 py-3 font-display text-sm font-semibold text-navy shadow-lg shadow-black/25 hover:bg-signal-dim"
                 >
-                  <div className="font-display text-2xl font-bold md:text-3xl">{v}</div>
-                  <div className="mt-1 text-xs leading-snug text-white/60">{l}</div>
-                </div>
-              ))}
+                  {t.hero.ctaDemo}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <a
+                  href="/opensky-company-brochure.pdf"
+                  className="inline-flex items-center rounded-full border border-white/25 bg-black/20 px-6 py-3 font-display text-sm font-semibold text-white backdrop-blur-sm hover:border-white/45"
+                >
+                  {t.hero.ctaBrochure}
+                </a>
+              </div>
+              <div className="mt-10 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-3">
+                {[
+                  [t.hero.stat1v, t.hero.stat1l],
+                  [t.hero.stat2v, t.hero.stat2l],
+                  [t.hero.stat3v, t.hero.stat3l],
+                ].map(([v, l], i) => (
+                  <Reveal key={v} variant="scale" delayMs={200 + i * 80}>
+                    <div className="rounded-lg border border-white/10 bg-black/30 p-4 backdrop-blur-md">
+                      <div className="font-display text-2xl font-bold md:text-3xl">{v}</div>
+                      <div className="mt-1 text-xs leading-snug text-white/75">{l}</div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
             </div>
-          </Reveal>
-          <Reveal delayMs={120} className="relative hidden lg:block">
-            <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-              <img
-                src="/images/hero-mission-loop-split.jpg"
-                alt=""
-                className="aspect-[4/3] w-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-6 -left-6 w-[55%] overflow-hidden rounded-xl border border-white/15 shadow-xl">
-              <img
-                src="/images/hero-os-atlas-ui-mission.jpg"
-                alt=""
-                className="aspect-video w-full object-cover"
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
+          </div>
+        </HeroMissionHoverRegion>
+      </HeroMissionProvider>
 
-      <section className="border-b border-border bg-navy-2 py-16 md:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <Reveal>
-            <p className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-signal">
+      <section className="section-glow border-b border-border bg-navy-2 py-16 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-2 lg:items-center lg:gap-14 lg:px-10">
+          <Reveal variant="left">
+            <p className="type-kicker text-signal">
               {t.problem.kicker}
             </p>
-            <h2 className="mt-3 max-w-3xl font-display text-[30px] font-semibold leading-tight md:text-[36px]">
+            <h2 className="type-h2 mt-3">
               {t.problem.title}
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/85">{t.problem.lead}</p>
+            <p className="type-body mt-4 text-white/85">{t.problem.lead}</p>
+          </Reveal>
+          <Reveal variant="right" delayMs={120}>
+            <ParallaxImage
+              src="/images/hero-drone-port-site.jpg"
+              alt=""
+              speed={0.1}
+              wrapperClassName="rounded-2xl border border-white/10 shadow-2xl"
+              className="aspect-[4/3] w-full scale-110 object-cover"
+            />
           </Reveal>
         </div>
       </section>
 
       <section className="border-b border-border py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <Reveal>
-            <p className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-signal">
+          <Reveal variant="fade">
+            <p className="type-kicker text-signal">
               {t.solutions.kicker}
             </p>
-            <h2 className="mt-3 max-w-2xl font-display text-[30px] font-semibold leading-tight md:text-[36px]">
+            <h2 className="type-h2 mt-3 max-w-2xl">
               {t.solutions.title}
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/85">{t.solutions.lead}</p>
+            <p className="type-body mt-4 max-w-2xl text-white/85">{t.solutions.lead}</p>
           </Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {t.solutions.cards.map((card, i) => (
-              <Reveal key={card.title} delayMs={i * 80}>
+              <Reveal key={card.title} variant="scale" delayMs={i * 100}>
                 <Link
                   to={card.href}
-                  className="group flex h-full flex-col rounded-xl border border-white/[0.08] bg-white/[0.03] p-6 transition-colors hover:border-signal/40 hover:bg-white/[0.06]"
+                  className="card-shine group flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.03]"
                 >
-                  <h3 className="font-display text-lg font-semibold text-white">{card.title}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-white/70">{card.body}</p>
-                  <ArrowRight className="mt-4 h-4 w-4 text-signal transition-transform group-hover:translate-x-1" />
+                  <div className="relative h-36 overflow-hidden">
+                    <img
+                      src={SOLUTION_CARD_IMAGES[i]}
+                      alt=""
+                      className="h-full w-full scale-105 object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
+                    <span className="absolute bottom-3 left-4 font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-signal">
+                      0{i + 1}
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="type-h3 text-white">{card.title}</h3>
+                    <p className="type-body mt-2 flex-1 text-white/70">{card.body}</p>
+                    <ArrowRight className="mt-4 h-4 w-4 text-signal transition-transform group-hover:translate-x-1.5" />
+                  </div>
                 </Link>
               </Reveal>
             ))}
@@ -119,97 +133,113 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="border-b border-border bg-navy-2 py-16 md:py-24">
+      <section className="section-glow border-b border-border bg-navy-2 py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <Reveal>
-            <p className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-signal">
+          <Reveal variant="up">
+            <p className="type-kicker text-signal">
               {t.why.kicker}
             </p>
-            <h2 className="mt-3 max-w-2xl font-display text-[30px] font-semibold leading-tight md:text-[36px]">
+            <h2 className="type-h2 mt-3 max-w-2xl">
               {t.why.title}
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/85">{t.why.lead}</p>
+            <p className="type-body mt-4 max-w-2xl text-white/85">{t.why.lead}</p>
           </Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {t.why.cards.map((card, i) => (
-              <Reveal key={card.title} delayMs={i * 60}>
-                <div className="rounded-xl border border-white/[0.08] bg-navy p-5">
-                  <h3 className="font-display text-base font-semibold text-signal">{card.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/75">{card.body}</p>
-                </div>
-              </Reveal>
-            ))}
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {t.why.cards.map((card, i) => {
+              const Icon = WHY_ICONS[i] ?? ShieldCheck;
+              return (
+                <Reveal key={card.title} variant="up" delayMs={i * 70}>
+                  <div className="card-shine group rounded-xl border border-white/[0.08] bg-navy/80 p-5 backdrop-blur-sm">
+                    <div className="mb-3 inline-flex rounded-lg border border-signal/30 bg-signal/10 p-2 text-signal transition-colors group-hover:border-signal/60 group-hover:bg-signal/15">
+                      <Icon className="h-5 w-5" aria-hidden />
+                    </div>
+                    <h3 className="type-h3 text-signal">{card.title}</h3>
+                    <p className="type-body mt-2 text-white/75">{card.body}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
 
       <section className="border-b border-border py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            <Reveal>
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-signal">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+            <Reveal variant="left">
+              <p className="type-kicker text-signal">
                 {t.pipeline.kicker}
               </p>
-              <h2 className="mt-3 font-display text-[30px] font-semibold leading-tight md:text-[36px]">
+              <h2 className="type-h2 mt-3">
                 {t.pipeline.title}
               </h2>
-              <ol className="mt-8 space-y-6">
-                {t.pipeline.steps.map((step, i) => (
-                  <li key={step.title} className="flex gap-4">
-                    <span className="font-display text-2xl font-bold text-signal/80">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <h3 className="font-display text-lg font-semibold">{step.title}</h3>
-                      <p className="mt-1 text-sm leading-relaxed text-white/75">{step.body}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+              <MissionPipeline steps={t.pipeline.steps} />
             </Reveal>
-            <Reveal delayMs={100}>
-              <img
-                src="/images/hero-satellite-orbit-night.jpg"
+            <Reveal variant="right" delayMs={140}>
+              <ParallaxImage
+                src="/images/hero-mission-loop-split.jpg"
                 alt=""
-                className="rounded-2xl border border-white/10 object-cover shadow-xl"
+                speed={0.14}
+                wrapperClassName="rounded-2xl border border-white/10 shadow-xl lg:sticky lg:top-28"
+                className="aspect-[4/3] w-full scale-110 object-cover object-[70%_center]"
               />
             </Reveal>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-border bg-navy-2 py-16 md:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <Reveal>
-            <p className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-signal">
+      <section className="relative overflow-hidden border-b border-border bg-navy-2 py-20 md:py-28">
+        <ParallaxImage
+          src="/images/hero-drone-water-infrastructure.jpg"
+          alt=""
+          speed={0.08}
+          wrapperClassName="absolute inset-0"
+          className="h-[120%] w-full object-cover opacity-25"
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-navy/80" aria-hidden />
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+          <Reveal variant="scale">
+            <p className="type-kicker text-signal">
               {t.sovereignty.kicker}
             </p>
-            <h2 className="mt-3 max-w-2xl font-display text-[30px] font-semibold md:text-[36px]">
+            <h2 className="type-h2 mt-3 max-w-2xl">
               {t.sovereignty.title}
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/85">{t.sovereignty.body}</p>
+            <p className="type-lead mt-4 max-w-2xl text-white/90">{t.sovereignty.body}</p>
           </Reveal>
         </div>
       </section>
 
-      <section className="py-16 md:py-20">
+      <section className="section-glow py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <Reveal>
-            <p className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-signal">
-              {t.pilot.kicker}
-            </p>
-            <h2 className="mt-3 max-w-xl font-display text-[30px] font-semibold md:text-[36px]">
-              {t.pilot.title}
-            </h2>
-            <p className="mt-4 max-w-xl text-base text-white/85">{t.pilot.body}</p>
-            <Link
-              to="/request"
-              className="group mt-8 inline-flex items-center gap-2 rounded-full bg-signal px-6 py-3 font-display text-sm font-semibold text-navy hover:bg-signal-dim"
-            >
-              {t.pilot.cta}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Reveal>
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <Reveal variant="left">
+              <p className="type-kicker text-signal">
+                {t.pilot.kicker}
+              </p>
+              <h2 className="type-h2 mt-3 max-w-xl">
+                {t.pilot.title}
+              </h2>
+              <p className="type-body mt-4 max-w-xl text-white/85">{t.pilot.body}</p>
+              <Link
+                to="/request"
+                className="cta-glow group mt-8 inline-flex items-center gap-2 rounded-full bg-signal px-6 py-3 font-display text-sm font-semibold text-navy hover:bg-signal-dim"
+              >
+                {t.pilot.cta}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Reveal>
+            <Reveal variant="right" delayMs={100}>
+              <ParallaxImage
+                src="/images/hero-analyst-review.jpg"
+                alt=""
+                speed={0.11}
+                wrapperClassName="rounded-2xl border border-signal/20 shadow-2xl"
+                className="aspect-video w-full scale-105 object-cover"
+              />
+            </Reveal>
+          </div>
         </div>
       </section>
     </>

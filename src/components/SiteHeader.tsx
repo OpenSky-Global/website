@@ -26,14 +26,14 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-navy">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-navy/55 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
           <img src="/os-mark.svg" alt="" className="h-8 w-8" draggable={false} />
           <span className="font-display text-[15px] font-semibold tracking-[0.12em] text-white">
             OPEN<span className="text-signal">SKY</span>
             <span className="ml-1 text-[10px] font-medium tracking-[0.2em] text-white/50">
-              CORP
+              GLOBAL
             </span>
           </span>
         </Link>
@@ -121,6 +121,20 @@ export function SiteHeader() {
             <NavLink to="/about" className="py-2" onClick={() => setOpen(false)}>
               {t.nav.about}
             </NavLink>
+            <div className="mt-3 flex rounded-full border border-white/15 p-0.5 w-fit">
+              {(["en", "fr"] as Locale[]).map((l) => (
+                <button
+                  key={l}
+                  type="button"
+                  onClick={() => setLocale(l)}
+                  className={`rounded-full px-3 py-1.5 font-display text-xs font-semibold uppercase ${
+                    locale === l ? "bg-signal text-navy" : "text-white/70 hover:text-white"
+                  }`}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
             <NavLink to="/request" className="mt-2 rounded-full bg-signal py-3 text-center font-semibold text-navy" onClick={() => setOpen(false)}>
               {t.nav.requestDemo}
             </NavLink>

@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { ParallaxImage } from "../components/ParallaxImage";
 import { Reveal } from "../components/Reveal";
 import { useI18n } from "../i18n/context";
 
@@ -79,15 +80,17 @@ export function IndustryPage() {
   return (
     <div className="pt-24 pb-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <Reveal>
-          <h1 className="font-display text-[36px] font-semibold md:text-[44px]">{c.title}</h1>
-          <p className="mt-4 max-w-2xl text-base text-white/85">{c.body}</p>
+        <Reveal variant="left">
+          <h1 className="type-h1-page">{c.title}</h1>
+          <p className="type-body mt-4 max-w-2xl text-white/85">{c.body}</p>
         </Reveal>
-        <Reveal delayMs={100}>
-          <img
+        <Reveal variant="scale" delayMs={120}>
+          <ParallaxImage
             src={block.image}
             alt=""
-            className="mt-10 w-full max-h-[480px] rounded-2xl border border-white/10 object-cover"
+            speed={0.11}
+            wrapperClassName="mt-10 overflow-hidden rounded-2xl border border-white/10 shadow-xl"
+            className="max-h-[480px] w-full scale-105 object-cover"
           />
         </Reveal>
       </div>

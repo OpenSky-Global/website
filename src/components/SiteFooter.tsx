@@ -17,14 +17,12 @@ export function SiteFooter() {
             <div className="flex items-center gap-2.5">
               <img src="/os-mark.svg" alt="" className="h-8 w-8" />
               <span className="font-display text-[15px] font-semibold tracking-[0.12em]">
-                OPEN<span className="text-signal">SKY</span> CORP
+                OPEN<span className="text-signal">SKY</span> GLOBAL
               </span>
             </div>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-white/70">{t.footer.tagline}</p>
+            <p className="type-body mt-4 max-w-md text-white/70">{t.footer.tagline}</p>
             <div className="mt-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-signal">
-                {t.footer.inquiries}
-              </p>
+              <p className="type-kicker text-signal">{t.footer.inquiries}</p>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
                 className="mt-1.5 inline-flex items-center gap-2 text-sm text-white/80 hover:text-white"
@@ -49,10 +47,8 @@ export function SiteFooter() {
             </a>
           </div>
           <div>
-            <div className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-signal">
-              {t.footer.explore}
-            </div>
-            <ul className="mt-4 space-y-2 text-sm">
+            <div className="type-kicker text-signal">{t.footer.explore}</div>
+            <ul className="type-body mt-4 space-y-2">
               <li>
                 <Link to="/" className="text-white/70 hover:text-white">
                   {t.nav.home}
@@ -81,10 +77,8 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <div className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-signal">
-              {t.footer.contact}
-            </div>
-            <ul className="mt-4 space-y-2 text-sm">
+            <div className="type-kicker text-signal">{t.footer.contact}</div>
+            <ul className="type-body mt-4 space-y-2">
               <li>
                 <Link to="/request" className="text-white/70 hover:text-white">
                   {t.nav.requestDemo}
@@ -97,7 +91,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/company/opensky-corp/"
+                  href="https://www.linkedin.com/company/opensky-global/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"

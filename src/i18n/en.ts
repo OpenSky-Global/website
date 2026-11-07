@@ -2,7 +2,7 @@ import type { Messages } from "./types";
 
 export const en: Messages = {
   meta: {
-    title: "OpenSky Corp | Satellite + drone intelligence | OS Atlas",
+    title: "OpenSky Global | Satellite + drone intelligence | OS Atlas",
     description:
       "Actionable proof for infrastructure you can't patrol. Satellite watches the portfolio, drone confirms the alert, signed evidence on OS Atlas, hosted in-country.",
   },
@@ -23,10 +23,56 @@ export const en: Messages = {
     projects: "Funded projects",
   },
   hero: {
-    kicker: "Satellite + drone intelligence",
-    title: "Actionable proof for the assets",
-    titleAccent: "you can't patrol.",
-    lead: "OpenSky watches every site from space, an analyst reviews each change, and our drones confirm only on alert. You get signed evidence on OS Atlas, hosted in your country.",
+    slides: [
+      {
+        kicker: "Watch · verify · inspect",
+        title: "One mission loop from",
+        titleAccent: "orbit to evidence.",
+        lead: "Space watches the portfolio, the field confirms on alert, and OS Atlas holds the signed trail your auditor can trust.",
+      },
+      {
+        kicker: "OS Atlas live",
+        title: "Every alert on",
+        titleAccent: "one mission map.",
+        lead: "Missions, layers, review queue and evidence export in one console — hosted in your country, in EN, FR and AR.",
+      },
+      {
+        kicker: "Copernicus watch",
+        title: "Every site on the",
+        titleAccent: "satellite clock.",
+        lead: "Sentinel-2 baselines and change detection across mines, ports, utilities and corridors — not only where you scheduled a flight.",
+      },
+      {
+        kicker: "Mining & phosphates",
+        title: "See what changed at",
+        titleAccent: "the pit and perimeter.",
+        lead: "Flag earthworks, encroachment and surface change before equipment damage or a regulatory visit.",
+      },
+      {
+        kicker: "Ports & logistics",
+        title: "Surface change across",
+        titleAccent: "waterfront you can't walk.",
+        lead: "Monitor berths, yards and back-of-port development across sites too large for patrols alone.",
+      },
+      {
+        kicker: "Pipelines & corridors",
+        title: "Long rights-of-way",
+        titleAccent: "under continuous watch.",
+        lead: "Detect third-party works, vegetation loss and new structures along power lines and pipelines.",
+      },
+      {
+        kicker: "Water & utilities",
+        title: "Dams and networks",
+        titleAccent: "without blind spots.",
+        lead: "Satellite cadence plus analyst review for erosion, breach risk and unauthorised construction.",
+      },
+      {
+        kicker: "Human review",
+        title: "A person on every",
+        titleAccent: "change before you do.",
+        lead: "No raw model output in your inbox — each flag is triaged before it becomes your alert.",
+      },
+    ],
     ctaDemo: "Request a demo",
     ctaBrochure: "Download brochure",
     stat1v: "~5 days",
@@ -165,7 +211,7 @@ export const en: Messages = {
     inquiries: "General inquiries",
     explore: "Explore",
     contact: "Contact",
-    copyright: "OpenSky Corp (OS Corp). All rights reserved.",
+    copyright: "OpenSky Global (OS Global). All rights reserved.",
     privacy: "Privacy",
     built: "Rabat · Casablanca",
   },
@@ -181,8 +227,8 @@ export const en: Messages = {
     note: "This form is a placeholder until our CRM is connected. Email jarjuadama101@gmail.com in the meantime.",
   },
   about: {
-    title: "About OpenSky Corp",
-    body: "OpenSky Corp (OS Corp) builds OS Atlas for owners and operators of mines, ports, utilities, pipelines and funded construction projects. We combine Copernicus satellite watch, analyst review, drone confirmation and signed evidence, hosted in the customer's country, in English, French and Arabic. We monitor assets and land change, not people.",
+    title: "About OpenSky Global",
+    body: "OpenSky Global (OS Global) builds OS Atlas for owners and operators of mines, ports, utilities, pipelines and funded construction projects. We combine Copernicus satellite watch, analyst review, drone confirmation and signed evidence, hosted in the customer's country, in English, French and Arabic. We monitor assets and land change, not people.",
   },
   responsible: {
     title: "Responsible use",

@@ -19,10 +19,12 @@ export type Messages = {
     projects: string;
   };
   hero: {
-    kicker: string;
-    title: string;
-    titleAccent: string;
-    lead: string;
+    slides: {
+      kicker: string;
+      title: string;
+      titleAccent: string;
+      lead: string;
+    }[];
     ctaDemo: string;
     ctaBrochure: string;
     stat1v: string;

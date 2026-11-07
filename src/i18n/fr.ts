@@ -2,7 +2,7 @@ import type { Messages } from "./types";
 
 export const fr: Messages = {
   meta: {
-    title: "OpenSky Corp | Intelligence satellite + drone | OS Atlas",
+    title: "OpenSky Global | Intelligence satellite + drone | OS Atlas",
     description:
       "Preuves exploitables pour des sites impossibles à patrouiller. Le satellite surveille le portefeuille, le drone confirme l'alerte, preuves signées sur OS Atlas, hébergées in-country.",
   },
@@ -23,10 +23,56 @@ export const fr: Messages = {
     projects: "Projets financés",
   },
   hero: {
-    kicker: "Intelligence satellite + drone",
-    title: "Des preuves exploitables pour les actifs",
-    titleAccent: "impossibles à patrouiller.",
-    lead: "OpenSky surveille chaque site depuis l'espace, un analyste valide chaque changement, et nos drones confirment uniquement sur alerte. Preuves signées sur OS Atlas, hébergées dans votre pays.",
+    slides: [
+      {
+        kicker: "Surveiller · vérifier · inspecter",
+        title: "Une boucle de mission de",
+        titleAccent: "l'orbite à la preuve.",
+        lead: "L'espace surveille le portefeuille, le terrain confirme sur alerte, et OS Atlas conserve la piste signée que votre auditeur peut vérifier.",
+      },
+      {
+        kicker: "OS Atlas en direct",
+        title: "Chaque alerte sur",
+        titleAccent: "une carte mission.",
+        lead: "Missions, couches, file de revue et export de preuves dans une console — hébergée in-country, en FR, AR et EN.",
+      },
+      {
+        kicker: "Veille Copernicus",
+        title: "Chaque site sous",
+        titleAccent: "l'horloge satellite.",
+        lead: "Références Sentinel-2 et détection de changement sur mines, ports, réseaux et corridors — pas seulement là où vous avez planifié un vol.",
+      },
+      {
+        kicker: "Mines et phosphates",
+        title: "Voir ce qui a changé à",
+        titleAccent: "la fosse et au périmètre.",
+        lead: "Signaler terrassements, empiètements et modifications de surface avant sinistre ou visite régulateur.",
+      },
+      {
+        kicker: "Ports et logistique",
+        title: "Changements de surface sur",
+        titleAccent: "des quais immenses.",
+        lead: "Suivre quais, parcs et zones arrière-port trop vastes pour la patrouille seule.",
+      },
+      {
+        kicker: "Pipelines et corridors",
+        title: "De longues emprises",
+        titleAccent: "sous veille continue.",
+        lead: "Détecter travaux tiers, perte de végétation et nouvelles structures le long des lignes et pipelines.",
+      },
+      {
+        kicker: "Eau et réseaux",
+        title: "Barrages et réseaux",
+        titleAccent: "sans angles morts.",
+        lead: "Cadence satellite et validation analyste pour érosion, risque de rupture et construction non autorisée.",
+      },
+      {
+        kicker: "Revue humaine",
+        title: "Un analyste sur",
+        titleAccent: "chaque changement.",
+        lead: "Pas de sortie brute du modèle dans votre boîte mail — chaque signal est trié avant de devenir votre alerte.",
+      },
+    ],
     ctaDemo: "Demander une démo",
     ctaBrochure: "Télécharger la brochure",
     stat1v: "~5 jours",
@@ -165,7 +211,7 @@ export const fr: Messages = {
     inquiries: "Contact général",
     explore: "Explorer",
     contact: "Contact",
-    copyright: "OpenSky Corp (OS Corp). Tous droits réservés.",
+    copyright: "OpenSky Global (OS Global). Tous droits réservés.",
     privacy: "Confidentialité",
     built: "Rabat · Casablanca",
   },
@@ -181,8 +227,8 @@ export const fr: Messages = {
     note: "Formulaire provisoire jusqu'à connexion CRM. Écrivez à jarjuadama101@gmail.com en attendant.",
   },
   about: {
-    title: "À propos d'OpenSky Corp",
-    body: "OpenSky Corp (OS Corp) développe OS Atlas pour les propriétaires de mines, ports, réseaux, pipelines et chantiers financés. Nous combinons veille Copernicus, validation analyste, confirmation drone et preuves signées, hébergées dans le pays du client, en français, arabe et anglais. Nous surveillons des actifs et des changements de terrain, pas des personnes.",
+    title: "À propos d'OpenSky Global",
+    body: "OpenSky Global (OS Global) développe OS Atlas pour les propriétaires de mines, ports, réseaux, pipelines et chantiers financés. Nous combinons veille Copernicus, validation analyste, confirmation drone et preuves signées, hébergées dans le pays du client, en français, arabe et anglais. Nous surveillons des actifs et des changements de terrain, pas des personnes.",
   },
   responsible: {
     title: "Usage responsable",
