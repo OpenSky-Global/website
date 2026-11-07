@@ -206,14 +206,23 @@ export const fr: Messages = {
     cta: "Parler à notre équipe",
   },
   footer: {
+    category: "Intelligence satellite + drone",
     tagline:
-      "Intelligence satellite et drone pour infrastructures critiques, conçu au Maroc pour l'Afrique.",
+      "Des preuves exploitables pour des infrastructures impossibles à patrouiller — veille portefeuille, validation analyste, drone sur alerte, preuves signées sur OS Atlas.",
+    pillars: "Surveiller · Vérifier · Inspecter · Prouver",
+    region: "Conçu pour l'Afrique",
     inquiries: "Contact général",
     explore: "Explorer",
+    industriesNav: "Secteurs",
     contact: "Contact",
+    ctaTitle: "Prêt à surveiller votre portefeuille ?",
+    ctaLead:
+      "Commencez par un pilote cadré ou une revue Sentinel-2 rétrospective sur vos sites.",
+    brochureNote: "PDF · Brochure entreprise (EN)",
+    linkedin: "LinkedIn",
     copyright: "OpenSky Global (OS Global). Tous droits réservés.",
     privacy: "Confidentialité",
-    built: "Rabat · Casablanca",
+    offices: "Rabat · Casablanca",
   },
   request: {
     title: "Demander une démo",

@@ -26,8 +26,8 @@ const HeroMissionContext = createContext<HeroMissionState>({
   index: 0,
   fadeMs: HERO_FADE_MS,
   slideCount: HERO_MISSION_SLIDES.length,
-  goToSlide: () => {},
-  setCarouselPaused: () => {},
+  goToSlide: () => { },
+  setCarouselPaused: () => { },
 });
 
 export function useHeroMissionIndex(): HeroMissionState {

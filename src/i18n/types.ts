@@ -61,13 +61,21 @@ export type Messages = {
   sovereignty: { kicker: string; title: string; body: string };
   pilot: { kicker: string; title: string; body: string; cta: string };
   footer: {
+    category: string;
     tagline: string;
+    pillars: string;
+    region: string;
     inquiries: string;
     explore: string;
+    industriesNav: string;
     contact: string;
+    ctaTitle: string;
+    ctaLead: string;
+    brochureNote: string;
+    linkedin: string;
     copyright: string;
     privacy: string;
-    built: string;
+    offices: string;
   };
   request: {
     title: string;

@@ -10,7 +10,7 @@ import { HeroRotatingCopy } from "../components/HeroRotatingCopy";
 import { MissionPipeline } from "../components/MissionPipeline";
 import { ParallaxImage } from "../components/ParallaxImage";
 import { Reveal } from "../components/Reveal";
-import { SOLUTION_CARD_IMAGES } from "../data/solutionVisuals";
+import { SOLUTION_CARD_IMAGE_POSITION, SOLUTION_CARD_IMAGES } from "../data/solutionVisuals";
 import { useI18n } from "../i18n/context";
 
 const WHY_ICONS = [Satellite, Radar, ShieldCheck, ShieldCheck, Globe2, Globe2] as const;
@@ -21,7 +21,7 @@ export function HomePage() {
   return (
     <>
       <HeroMissionProvider>
-        <HeroMissionHoverRegion className="relative isolate min-h-[min(100vh,920px)] overflow-hidden border-b border-border">
+        <HeroMissionHoverRegion className="relative isolate flex min-h-[min(100vh,920px)] flex-col overflow-hidden border-b border-border">
           <HeroMissionBackdrop />
           <div
             className="absolute inset-0 bg-gradient-to-r from-navy/92 via-navy/72 to-navy/20"
@@ -31,7 +31,7 @@ export function HomePage() {
             className="absolute inset-0 bg-gradient-to-t from-navy/85 via-transparent to-navy/45"
             aria-hidden
           />
-          <div className="relative z-10 mx-auto flex max-w-7xl flex-col justify-end px-6 pb-16 pt-36 md:min-h-[min(100vh,920px)] md:justify-center md:pb-24 md:pt-28 lg:px-10">
+          <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-6 pb-10 pt-28 sm:pb-14 md:pb-16 lg:px-10 lg:pb-20">
             <div className="max-w-2xl">
               <HeroRotatingCopy slides={t.hero.slides} />
               <HeroSlideDots labels={t.hero.slides.map((s) => s.kicker)} />
@@ -50,16 +50,16 @@ export function HomePage() {
                   {t.hero.ctaBrochure}
                 </a>
               </div>
-              <div className="mt-10 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-3">
+              <div className="mt-10 grid w-full grid-cols-1 gap-3 sm:grid-cols-3 sm:items-stretch">
                 {[
                   [t.hero.stat1v, t.hero.stat1l],
                   [t.hero.stat2v, t.hero.stat2l],
                   [t.hero.stat3v, t.hero.stat3l],
                 ].map(([v, l], i) => (
-                  <Reveal key={v} variant="scale" delayMs={200 + i * 80}>
-                    <div className="rounded-lg border border-white/10 bg-black/30 p-4 backdrop-blur-md">
+                  <Reveal key={v} variant="scale" delayMs={200 + i * 80} className="h-full">
+                    <div className="flex h-full min-h-[6.75rem] flex-col justify-center rounded-lg border border-white/10 bg-black/30 p-4 backdrop-blur-md">
                       <div className="font-display text-2xl font-bold md:text-3xl">{v}</div>
-                      <div className="mt-1 text-xs leading-snug text-white/75">{l}</div>
+                      <div className="mt-1.5 flex-1 text-xs leading-snug text-white/75">{l}</div>
                     </div>
                   </Reveal>
                 ))}
@@ -103,18 +103,21 @@ export function HomePage() {
             </h2>
             <p className="type-body mt-4 max-w-2xl text-white/85">{t.solutions.lead}</p>
           </Reveal>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:items-stretch">
             {t.solutions.cards.map((card, i) => (
-              <Reveal key={card.title} variant="scale" delayMs={i * 100}>
+              <Reveal key={card.title} variant="scale" delayMs={i * 100} className="h-full">
                 <Link
                   to={card.href}
                   className="card-shine group flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.03]"
                 >
-                  <div className="relative h-36 overflow-hidden">
+                  <div className="relative h-40 overflow-hidden sm:h-36 lg:h-44">
                     <img
                       src={SOLUTION_CARD_IMAGES[i]}
                       alt=""
-                      className="h-full w-full scale-105 object-cover transition-transform duration-700 group-hover:scale-110"
+                      className={[
+                        "h-full w-full scale-105 object-cover transition-transform duration-700 group-hover:scale-110",
+                        SOLUTION_CARD_IMAGE_POSITION[i],
+                      ].join(" ")}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
                     <span className="absolute bottom-3 left-4 font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-signal">

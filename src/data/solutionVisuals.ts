@@ -1,6 +1,14 @@
+/** Dedicated solution-pipeline card art (not shared with hero carousel). */
 export const SOLUTION_CARD_IMAGES = [
-  "/images/hero-satellite-orbit-night.jpg",
-  "/images/hero-analyst-review.jpg",
-  "/images/hero-drone-corridor.jpg",
-  "/images/hero-os-atlas-ui-mission.jpg",
+  "/images/solutions/portfolio-watch.jpg",
+  "/images/solutions/analyst-review.jpg",
+  "/images/solutions/drone-on-alert.jpg",
+  "/images/solutions/signed-evidence.jpg",
+] as const;
+
+export const SOLUTION_CARD_IMAGE_POSITION = [
+  "object-center",
+  "object-center",
+  "object-center",
+  "object-center",
 ] as const;

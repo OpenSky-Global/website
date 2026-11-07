@@ -282,3 +282,87 @@ body {
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
+
+/* Site chrome — floating nav bar */
+.site-header-float {
+  pointer-events: none;
+}
+
+.site-header {
+  position: relative;
+  overflow: visible;
+  border-radius: 1rem;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  background: linear-gradient(
+    165deg,
+    rgb(15 27 45 / 0.94) 0%,
+    rgb(22 38 61 / 0.88) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 0.2),
+    0 18px 48px rgb(0 0 0 / 0.38),
+    0 4px 12px rgb(0 0 0 / 0.25);
+  backdrop-filter: blur(16px);
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-signal) 35%,
+    var(--color-teal) 65%,
+    transparent
+  );
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.site-header-logo img {
+  filter: drop-shadow(0 2px 14px rgb(0 0 0 / 0.65)) drop-shadow(0 0 24px rgb(0 0 0 / 0.35));
+}
+
+.site-header-menu {
+  border-radius: 1rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background: rgb(22 38 61 / 0.96);
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.35);
+  backdrop-filter: blur(16px);
+}
+
+.site-nav-pill {
+  border-radius: 9999px;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.site-nav-pill:hover {
+  background: rgb(255 255 255 / 0.06);
+}
+
+.site-nav-pill.is-active {
+  background: rgb(201 162 39 / 0.14);
+  color: var(--color-signal);
+}
+
+.site-footer-shell {
+  background:
+    radial-gradient(ellipse 70% 55% at 10% 0%, rgb(43 179 163 / 0.08), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 95% 20%, rgb(201 162 39 / 0.07), transparent 50%),
+    var(--color-navy);
+}
+
+.site-footer-cta {
+  background: linear-gradient(
+    105deg,
+    rgb(201 162 39 / 0.14) 0%,
+    rgb(43 179 163 / 0.1) 48%,
+    rgb(15 27 45 / 0.4) 100%
+  );
+  border: 1px solid rgb(255 255 255 / 0.1);
+}

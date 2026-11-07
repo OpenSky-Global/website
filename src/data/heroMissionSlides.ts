@@ -34,5 +34,5 @@ export const HERO_MISSION_SLIDES = [
   },
 ] as const;
 
-export const HERO_ROTATE_MS = 7000;
+export const HERO_ROTATE_MS = 5000;
 export const HERO_FADE_MS = 1400;
