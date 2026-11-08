@@ -80,7 +80,28 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link to="/platform" className="text-white/72 transition-colors hover:text-white">
-                  {t.nav.platform}
+                  {t.nav.productsOverview}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/platform/atlas"
+                  className="text-white/72 transition-colors hover:text-white"
+                >
+                  {t.nav.atlas}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/platform/os-fields"
+                  className="text-white/72 transition-colors hover:text-white"
+                >
+                  {t.nav.osFields}
+                </Link>
+              </li>
+              <li>
+                <Link to="/industries" className="text-white/72 transition-colors hover:text-white">
+                  {t.nav.industriesOverview}
                 </Link>
               </li>
               <li>

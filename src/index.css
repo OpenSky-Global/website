@@ -195,6 +195,12 @@ body {
   border-radius: 9999px;
   background: linear-gradient(135deg, var(--color-signal), var(--color-signal-dim));
   box-shadow: 0 0 0 4px rgb(15 27 45 / 0.9), 0 0 20px rgb(201 162 39 / 0.35);
+  transition: box-shadow 0.45s ease, transform 0.45s ease;
+}
+
+.pipeline-node-active {
+  transform: scale(1.06);
+  box-shadow: 0 0 0 4px rgb(15 27 45 / 0.9), 0 0 28px rgb(201 162 39 / 0.55);
 }
 
 .section-glow {
@@ -283,7 +289,7 @@ body {
   letter-spacing: -0.02em;
 }
 
-/* Site chrome — floating nav bar */
+/* Site chrome: floating nav bar */
 .site-header-float {
   pointer-events: none;
 }

@@ -5,6 +5,7 @@ import { useI18n } from "../i18n/context";
 import type { Locale } from "../i18n/types";
 
 const industryPaths = [
+  { key: "industriesOverview" as const, path: "/industries" },
   { key: "mining" as const, path: "/industries/mining" },
   { key: "ports" as const, path: "/industries/ports" },
   { key: "utilities" as const, path: "/industries/utilities" },
@@ -12,10 +13,15 @@ const industryPaths = [
   { key: "projects" as const, path: "/industries/projects" },
 ];
 
+const productPaths = [
+  { key: "productsOverview" as const, path: "/platform" },
+  { key: "atlas" as const, path: "/platform/atlas" },
+  { key: "osFields" as const, path: "/platform/os-fields" },
+];
+
 const navLinks = [
   { to: "/", end: true, labelKey: "home" as const },
   { to: "/solutions", labelKey: "solutions" as const },
-  { to: "/platform", labelKey: "platform" as const },
   { to: "/about", labelKey: "about" as const },
 ];
 
@@ -47,16 +53,94 @@ function NavItem({
   );
 }
 
+type NavDropdownItem = { path: string; label: string };
+
+function NavDropdown({
+  open,
+  setOpen,
+  closeSibling,
+  routeActive,
+  triggerLabel,
+  items,
+  ariaLabel,
+}: {
+  open: boolean;
+  setOpen: (value: boolean) => void;
+  closeSibling: () => void;
+  routeActive: boolean;
+  triggerLabel: string;
+  items: NavDropdownItem[];
+  ariaLabel: string;
+}) {
+  const toggle = () => {
+    closeSibling();
+    setOpen(!open);
+  };
+
+  return (
+    <div
+      className="group relative"
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+          setOpen(false);
+        }
+      }}
+    >
+      <button
+        type="button"
+        className={[
+          "site-nav-pill inline-flex items-center gap-1 px-3 py-2 font-display text-[13px] font-medium tracking-wide",
+          routeActive ? "is-active text-signal" : "text-white/78 hover:text-white",
+        ].join(" ")}
+        aria-expanded={open}
+        aria-haspopup="true"
+        aria-label={ariaLabel}
+        onClick={toggle}
+      >
+        {triggerLabel}
+        <ChevronDown
+          className={["h-3.5 w-3.5 transition-transform", open ? "rotate-180" : ""].join(" ")}
+        />
+      </button>
+      <div
+        className={[
+          "absolute left-1/2 top-full z-50 w-60 -translate-x-1/2 pt-1",
+          open
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-1 opacity-0 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100",
+        ].join(" ")}
+      >
+        <div className="rounded-xl border border-white/12 bg-navy-2/98 p-1.5 shadow-xl shadow-black/40 backdrop-blur-md">
+          {items.map(({ path, label }) => (
+            <Link
+              key={path}
+              to={path}
+              className="block rounded-lg px-3 py-2.5 text-sm text-white/82 transition-colors hover:bg-white/[0.07] hover:text-white"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => setOpen(false)}
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function SiteHeader() {
   const { t, locale, setLocale } = useI18n();
   const [open, setOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const location = useLocation();
-  const onIndustryRoute = location.pathname.startsWith("/industries/");
+  const onIndustryRoute = location.pathname.startsWith("/industries");
+  const onProductRoute = location.pathname.startsWith("/platform");
 
   useEffect(() => {
     setOpen(false);
     setIndustriesOpen(false);
+    setProductsOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -104,54 +188,31 @@ export function SiteHeader() {
               {t.nav[labelKey]}
             </NavItem>
           ))}
-          <div className="group relative">
-            <button
-              type="button"
-              className={[
-                "site-nav-pill inline-flex items-center gap-1 px-3 py-2 font-display text-[13px] font-medium tracking-wide",
-                onIndustryRoute
-                  ? "is-active text-signal"
-                  : "text-white/78 hover:text-white",
-              ].join(" ")}
-              aria-expanded={industriesOpen}
-              aria-haspopup="true"
-              onClick={() => setIndustriesOpen((v) => !v)}
-              onBlur={(e) => {
-                if (!e.currentTarget.contains(e.relatedTarget as Node)) {
-                  setIndustriesOpen(false);
-                }
-              }}
-            >
-              {t.nav.industries}
-              <ChevronDown
-                className={[
-                  "h-3.5 w-3.5 transition-transform",
-                  industriesOpen ? "rotate-180" : "",
-                ].join(" ")}
-              />
-            </button>
-            <div
-              className={[
-                "absolute left-1/2 top-full z-50 w-60 -translate-x-1/2 pt-2 transition-all duration-200",
-                industriesOpen
-                  ? "pointer-events-auto translate-y-0 opacity-100"
-                  : "pointer-events-none translate-y-1 opacity-0 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100",
-              ].join(" ")}
-            >
-              <div className="rounded-xl border border-white/12 bg-navy-2/98 p-1.5 shadow-xl shadow-black/40 backdrop-blur-md">
-                {industryPaths.map(({ key, path }) => (
-                  <Link
-                    key={path}
-                    to={path}
-                    className="block rounded-lg px-3 py-2.5 text-sm text-white/82 transition-colors hover:bg-white/[0.07] hover:text-white"
-                    onClick={() => setIndustriesOpen(false)}
-                  >
-                    {t.industries[key]}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
+          <NavDropdown
+            open={productsOpen}
+            setOpen={setProductsOpen}
+            closeSibling={() => setIndustriesOpen(false)}
+            routeActive={onProductRoute}
+            triggerLabel={t.nav.platform}
+            ariaLabel={t.nav.platform}
+            items={productPaths.map(({ key, path }) => ({
+              path,
+              label: t.nav[key],
+            }))}
+          />
+          <NavDropdown
+            open={industriesOpen}
+            setOpen={setIndustriesOpen}
+            closeSibling={() => setProductsOpen(false)}
+            routeActive={onIndustryRoute}
+            triggerLabel={t.nav.industries}
+            ariaLabel={t.nav.industries}
+            items={industryPaths.map(({ key, path }) => ({
+              path,
+              label:
+                key === "industriesOverview" ? t.nav.industriesOverview : t.industries[key],
+            }))}
+          />
         </nav>
 
         <div className="hidden shrink-0 items-center gap-2 lg:flex">
@@ -204,6 +265,17 @@ export function SiteHeader() {
                   {t.nav[labelKey]}
                 </NavItem>
               ))}
+              <p className="type-kicker mb-1 mt-3 text-signal">{t.nav.platform}</p>
+              {productPaths.map(({ key, path }) => (
+                <Link
+                  key={path}
+                  to={path}
+                  className="rounded-lg py-2 pl-2 text-white/80 hover:bg-white/[0.05] hover:text-white"
+                  onClick={closeMobile}
+                >
+                  {t.nav[key]}
+                </Link>
+              ))}
               <p className="type-kicker mb-1 mt-3 text-signal">{t.nav.industries}</p>
               {industryPaths.map(({ key, path }) => (
                 <Link
@@ -212,7 +284,7 @@ export function SiteHeader() {
                   className="rounded-lg py-2 pl-2 text-white/80 hover:bg-white/[0.05] hover:text-white"
                   onClick={closeMobile}
                 >
-                  {t.industries[key]}
+                  {key === "industriesOverview" ? t.nav.industriesOverview : t.industries[key]}
                 </Link>
               ))}
               <div className="mt-4 flex w-fit rounded-full border border-white/12 p-0.5">

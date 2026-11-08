@@ -6,6 +6,10 @@ export type Messages = {
     home: string;
     solutions: string;
     platform: string;
+    atlas: string;
+    osFields: string;
+    productsOverview: string;
+    industriesOverview: string;
     industries: string;
     about: string;
     responsible: string;
@@ -34,7 +38,14 @@ export type Messages = {
     stat3v: string;
     stat3l: string;
   };
-  problem: { kicker: string; title: string; lead: string };
+  whatWeDo: {
+    kicker: string;
+    title: string;
+    lead: string;
+    challenge: string;
+    exploreCta: string;
+    pillars: { badge: string; title: string; body: string; href: string; image: string }[];
+  };
   solutions: {
     kicker: string;
     title: string;
@@ -52,11 +63,47 @@ export type Messages = {
     title: string;
     steps: { title: string; body: string }[];
   };
-  platform: {
+  productsHub: {
     kicker: string;
     title: string;
     lead: string;
-    products: { tag: string; title: string; body: string }[];
+    sharedStack: string;
+    cards: {
+      slug: string;
+      kicker: string;
+      title: string;
+      body: string;
+      cta: string;
+      image: string;
+    }[];
+  };
+  industriesHub: {
+    kicker: string;
+    title: string;
+    lead: string;
+    cards: {
+      mining: { title: string; body: string; cta: string };
+      ports: { title: string; body: string; cta: string };
+      utilities: { title: string; body: string; cta: string };
+      pipelines: { title: string; body: string; cta: string };
+      projects: { title: string; body: string; cta: string };
+    };
+  };
+  atlas: {
+    kicker: string;
+    title: string;
+    lead: string;
+    modules: { tag: string; title: string; body: string }[];
+    otherProduct: string;
+    requestCta: string;
+  };
+  osFields: {
+    kicker: string;
+    title: string;
+    lead: string;
+    modules: { tag: string; title: string; body: string }[];
+    otherProduct: string;
+    requestCta: string;
   };
   sovereignty: { kicker: string; title: string; body: string };
   pilot: { kicker: string; title: string; body: string; cta: string };
@@ -84,10 +131,17 @@ export type Messages = {
     email: string;
     company: string;
     sector: string;
+    sectors: string[];
     message: string;
     submit: string;
     note: string;
   };
-  about: { title: string; body: string };
-  responsible: { title: string; body: string };
+  about: {
+    kicker: string;
+    title: string;
+    lead: string;
+    sections: { label: string; title: string; body: string }[];
+    responsibleLink: string;
+  };
+  responsible: { kicker: string; title: string; body: string };
 };

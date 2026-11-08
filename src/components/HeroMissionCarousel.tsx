@@ -86,7 +86,7 @@ export function HeroMissionProvider({ children }: { children: ReactNode }) {
   return <HeroMissionContext.Provider value={value}>{children}</HeroMissionContext.Provider>;
 }
 
-/** Pause auto-rotate while the pointer is over the hero (e.g. reading copy or using dots). */
+/** Hero shell; auto-rotate runs continuously unless dots pause it. */
 export function HeroMissionHoverRegion({
   children,
   className,
@@ -94,22 +94,7 @@ export function HeroMissionHoverRegion({
   children: ReactNode;
   className?: string;
 }) {
-  const { setCarouselPaused } = useHeroMissionIndex();
-  return (
-    <div
-      className={className}
-      onMouseEnter={() => setCarouselPaused(true)}
-      onMouseLeave={() => setCarouselPaused(false)}
-      onFocusCapture={() => setCarouselPaused(true)}
-      onBlurCapture={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
-          setCarouselPaused(false);
-        }
-      }}
-    >
-      {children}
-    </div>
-  );
+  return <div className={className}>{children}</div>;
 }
 
 export function HeroMissionBackdrop() {
@@ -155,7 +140,7 @@ export function HeroMissionBackdrop() {
 }
 
 export function HeroSlideDots({ labels }: { labels: string[] }) {
-  const { index, slideCount, goToSlide } = useHeroMissionIndex();
+  const { index, slideCount, goToSlide, setCarouselPaused } = useHeroMissionIndex();
   const count = Math.min(slideCount, labels.length);
 
   return (
@@ -163,6 +148,14 @@ export function HeroSlideDots({ labels }: { labels: string[] }) {
       className="mt-6 flex flex-wrap items-center gap-2"
       role="tablist"
       aria-label="Mission stories"
+      onMouseEnter={() => setCarouselPaused(true)}
+      onMouseLeave={() => setCarouselPaused(false)}
+      onFocusCapture={() => setCarouselPaused(true)}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+          setCarouselPaused(false);
+        }
+      }}
     >
       {Array.from({ length: count }, (_, i) => (
         <button

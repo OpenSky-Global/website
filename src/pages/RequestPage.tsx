@@ -43,12 +43,9 @@ export function RequestPage() {
                 name="sector"
                 className="mt-1 w-full rounded-lg border border-white/15 bg-navy-2 px-3 py-2.5 text-white"
               >
-                <option>Mining</option>
-                <option>Port</option>
-                <option>Utilities</option>
-                <option>Pipeline / power</option>
-                <option>Construction / DFI project</option>
-                <option>Other</option>
+                {t.request.sectors.map((s) => (
+                  <option key={s}>{s}</option>
+                ))}
               </select>
             </label>
             <label className="block text-sm">

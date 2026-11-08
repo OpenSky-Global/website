@@ -8,15 +8,18 @@ import {
 } from "../components/HeroMissionCarousel";
 import { HeroRotatingCopy } from "../components/HeroRotatingCopy";
 import { MissionPipeline } from "../components/MissionPipeline";
+import { PipelineStepVisual } from "../components/PipelineStepVisual";
 import { ParallaxImage } from "../components/ParallaxImage";
 import { Reveal } from "../components/Reveal";
 import { SOLUTION_CARD_IMAGE_POSITION, SOLUTION_CARD_IMAGES } from "../data/solutionVisuals";
+import { useState } from "react";
 import { useI18n } from "../i18n/context";
 
-const WHY_ICONS = [Satellite, Radar, ShieldCheck, ShieldCheck, Globe2, Globe2] as const;
+const WHY_ICONS = [Satellite, Radar, ShieldCheck, Globe2] as const;
 
 export function HomePage() {
   const { t } = useI18n();
+  const [pipelineStep, setPipelineStep] = useState(0);
 
   return (
     <>
@@ -43,12 +46,6 @@ export function HomePage() {
                   {t.hero.ctaDemo}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
-                <a
-                  href="/opensky-company-brochure.pdf"
-                  className="inline-flex items-center rounded-full border border-white/25 bg-black/20 px-6 py-3 font-display text-sm font-semibold text-white backdrop-blur-sm hover:border-white/45"
-                >
-                  {t.hero.ctaBrochure}
-                </a>
               </div>
               <div className="mt-10 grid w-full grid-cols-1 gap-3 sm:grid-cols-3 sm:items-stretch">
                 {[
@@ -70,25 +67,41 @@ export function HomePage() {
       </HeroMissionProvider>
 
       <section className="section-glow border-b border-border bg-navy-2 py-16 md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-2 lg:items-center lg:gap-14 lg:px-10">
-          <Reveal variant="left">
-            <p className="type-kicker text-signal">
-              {t.problem.kicker}
-            </p>
-            <h2 className="type-h2 mt-3">
-              {t.problem.title}
-            </h2>
-            <p className="type-body mt-4 text-white/85">{t.problem.lead}</p>
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <Reveal variant="up">
+            <p className="type-kicker text-signal">{t.whatWeDo.kicker}</p>
+            <h2 className="type-h2 mt-3 max-w-3xl">{t.whatWeDo.title}</h2>
+            <p className="type-body mt-4 max-w-3xl text-white/85">{t.whatWeDo.lead}</p>
+            <p className="type-body mt-3 max-w-3xl text-white/60">{t.whatWeDo.challenge}</p>
           </Reveal>
-          <Reveal variant="right" delayMs={120}>
-            <ParallaxImage
-              src="/images/hero-drone-port-site.jpg"
-              alt=""
-              speed={0.1}
-              wrapperClassName="rounded-2xl border border-white/10 shadow-2xl"
-              className="aspect-[4/3] w-full scale-110 object-cover"
-            />
-          </Reveal>
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            {t.whatWeDo.pillars.map((pillar, i) => (
+              <Reveal key={pillar.href} variant="scale" delayMs={i * 100}>
+                <Link
+                  to={pillar.href}
+                  className="card-shine group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
+                >
+                  <div className="relative h-48 overflow-hidden sm:h-56">
+                    <img
+                      src={pillar.image}
+                      alt=""
+                      className="h-full w-full scale-105 object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-transparent" />
+                    <span className="absolute bottom-4 left-5 type-kicker text-signal">{pillar.badge}</span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6 md:p-8">
+                    <h3 className="type-h3 text-white">{pillar.title}</h3>
+                    <p className="type-body mt-3 flex-1 text-white/75">{pillar.body}</p>
+                    <span className="mt-5 inline-flex items-center gap-2 font-display text-sm font-semibold text-signal">
+                      {t.whatWeDo.exploreCta}
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -147,17 +160,21 @@ export function HomePage() {
             </h2>
             <p className="type-body mt-4 max-w-2xl text-white/85">{t.why.lead}</p>
           </Reveal>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-3 md:grid-cols-4 md:items-stretch md:gap-4">
             {t.why.cards.map((card, i) => {
               const Icon = WHY_ICONS[i] ?? ShieldCheck;
               return (
-                <Reveal key={card.title} variant="up" delayMs={i * 70}>
-                  <div className="card-shine group rounded-xl border border-white/[0.08] bg-navy/80 p-5 backdrop-blur-sm">
-                    <div className="mb-3 inline-flex rounded-lg border border-signal/30 bg-signal/10 p-2 text-signal transition-colors group-hover:border-signal/60 group-hover:bg-signal/15">
-                      <Icon className="h-5 w-5" aria-hidden />
+                <Reveal key={card.title} variant="up" delayMs={i * 70} className="h-full min-w-0">
+                  <div className="card-shine group flex h-full flex-col rounded-xl border border-white/[0.08] bg-navy/80 p-4 backdrop-blur-sm md:p-5">
+                    <div className="mb-3 flex items-start gap-2.5 rounded-lg border border-signal/30 bg-signal/10 p-2.5 text-signal transition-colors group-hover:border-signal/60 group-hover:bg-signal/15">
+                      <Icon className="mt-0.5 h-5 w-5 shrink-0" aria-hidden />
+                      <h3 className="font-display text-sm font-semibold leading-snug text-signal md:text-base">
+                        {card.title}
+                      </h3>
                     </div>
-                    <h3 className="type-h3 text-signal">{card.title}</h3>
-                    <p className="type-body mt-2 text-white/75">{card.body}</p>
+                    <p className="flex-1 text-sm leading-relaxed text-white/75 md:text-[0.9375rem]">
+                      {card.body}
+                    </p>
                   </div>
                 </Reveal>
               );
@@ -176,15 +193,15 @@ export function HomePage() {
               <h2 className="type-h2 mt-3">
                 {t.pipeline.title}
               </h2>
-              <MissionPipeline steps={t.pipeline.steps} />
+              <MissionPipeline
+                steps={t.pipeline.steps}
+                onActiveStepChange={setPipelineStep}
+              />
             </Reveal>
             <Reveal variant="right" delayMs={140}>
-              <ParallaxImage
-                src="/images/hero-mission-loop-split.jpg"
-                alt=""
-                speed={0.14}
-                wrapperClassName="rounded-2xl border border-white/10 shadow-xl lg:sticky lg:top-28"
-                className="aspect-[4/3] w-full scale-110 object-cover object-[70%_center]"
+              <PipelineStepVisual
+                activeIndex={pipelineStep}
+                labels={t.pipeline.steps.map((s) => s.title)}
               />
             </Reveal>
           </div>
@@ -193,7 +210,7 @@ export function HomePage() {
 
       <section className="relative overflow-hidden border-b border-border bg-navy-2 py-20 md:py-28">
         <ParallaxImage
-          src="/images/hero-drone-water-infrastructure.jpg"
+          src="/images/hero-slides/slide-07-water.jpg"
           alt=""
           speed={0.08}
           wrapperClassName="absolute inset-0"
@@ -211,38 +228,6 @@ export function HomePage() {
             </h2>
             <p className="type-lead mt-4 max-w-2xl text-white/90">{t.sovereignty.body}</p>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="section-glow py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <Reveal variant="left">
-              <p className="type-kicker text-signal">
-                {t.pilot.kicker}
-              </p>
-              <h2 className="type-h2 mt-3 max-w-xl">
-                {t.pilot.title}
-              </h2>
-              <p className="type-body mt-4 max-w-xl text-white/85">{t.pilot.body}</p>
-              <Link
-                to="/request"
-                className="cta-glow group mt-8 inline-flex items-center gap-2 rounded-full bg-signal px-6 py-3 font-display text-sm font-semibold text-navy hover:bg-signal-dim"
-              >
-                {t.pilot.cta}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Reveal>
-            <Reveal variant="right" delayMs={100}>
-              <ParallaxImage
-                src="/images/hero-analyst-review.jpg"
-                alt=""
-                speed={0.11}
-                wrapperClassName="rounded-2xl border border-signal/20 shadow-2xl"
-                className="aspect-video w-full scale-105 object-cover"
-              />
-            </Reveal>
-          </div>
         </div>
       </section>
     </>
