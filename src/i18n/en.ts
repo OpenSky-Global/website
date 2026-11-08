@@ -16,8 +16,8 @@ export const en: Messages = {
     industriesOverview: "Overview",
     industries: "Industries",
     about: "About",
-    responsible: "Responsible use",
     requestDemo: "Request a demo",
+    responsible: ""
   },
   industries: {
     mining: "Mining & phosphates",
@@ -351,7 +351,7 @@ export const en: Messages = {
   },
   responsible: {
     kicker: "Policy",
-    title: "Responsible use",
     body: "OpenSky products are for asset integrity, HSE and security over infrastructure and land. We do not offer weapons targeting, electronic attack, facial recognition or tracking of individuals. Customers must use exported evidence lawfully.",
+    title: ""
   },
 };
